@@ -4,6 +4,6 @@
 !init.el
 !early-init.el
 !.gitignore
-!lisp/*
+!lisp/
 
 
