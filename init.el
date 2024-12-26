@@ -36,7 +36,6 @@
   (scroll-bar-mode -1)
   (menu-bar-mode -1)
   (set-frame-parameter nil 'undecorated t)
-  ;(add-to-list 'default-frame-alist '(undecorated . t))
   (add-to-list 'default-frame-alist '(undecorated-round . t))
   
   ;; Set internal border to 15 pixels for a floating effect
@@ -44,29 +43,12 @@
   (add-to-list 'default-frame-alist '(internal-border-width . 15)))
 
 
-;; project built in
-
-(require 'project)
-
 ;; Theme setup
 (use-package doom-themes
   :config
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t)
-  (load-theme 'doom-one t)
-  
-  ;; Custom face overrides
-  ;(custom-set-faces
-  ; '(default ((t (:background "#1a1a1a" :foreground "#ffffff"))))
-  ; '(font-lock-function-name-face ((t (:foreground "#e6b800"))))
-  ; '(font-lock-keyword-face ((t (:foreground "#e6b800"))))
-  ; '(font-lock-builtin-face ((t (:foreground "#e6b800"))))
-  ; '(font-lock-string-face ((t (:foreground "#98c379"))))
-  ; '(font-lock-comment-face ((t (:foreground "#666666"))))
-  ; '(font-lock-variable-name-face ((t (:foreground "#ffffff"))))
-  ; '(font-lock-type-face ((t (:foreground "#e6b800"))))
-  ; '(font-lock-constant-face ((t (:foreground "#e6b800")))))
-  )
+  (load-theme 'doom-one t))
 
 ;; Font settings
 (when (display-graphic-p)
@@ -92,6 +74,12 @@
   (setq evil-want-keybinding nil)
   :config
   (evil-mode 1))
+
+;; comments 
+(use-package evil-commentary
+  :ensure t
+  :config
+  (evil-commentary-mode))
 
 ;; Terminal support
 (use-package vterm
@@ -126,9 +114,9 @@
   (completion-category-overrides '((file (styles basic partial-completion)))))
 
 ;; treesitter
-(use-package treesit-auto
-  :config
-  (treesit-auto-add-to-auto-mode-alist 'all))
+;(use-package treesit-auto
+;  :config
+;  (treesit-auto-add-to-auto-mode-alist 'all))
 
 ;; Company mode
 (use-package company
@@ -173,12 +161,8 @@
    "s-1" 'delete-other-windows
    "s-2" 'split-window-below
    "s-3" 'split-window-right
-   "s-0" 'delete-window
+   "s-0" 'delete-window)
    
-   ;; Transparency controls
-   ;"s-C-=" '(lambda () (interactive) (my/adjust-transparency 5))   ; Cmd + Ctrl + + to increase
-   ;"s-C--" '(lambda () (interactive) (my/adjust-transparency -5))) ; Cmd + Ctrl + - to decrease
-
   ;; Completion key bindings
   (general-define-key
    :keymaps 'company-mode-map
@@ -250,39 +234,32 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages nil))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:background "#1a1a1a" :foreground "#ffffff"))))
- '(font-lock-builtin-face ((t (:foreground "#e6b800"))))
- '(font-lock-comment-face ((t (:foreground "#666666"))))
- '(font-lock-constant-face ((t (:foreground "#e6b800"))))
- '(font-lock-function-name-face ((t (:foreground "#e6b800"))))
- '(font-lock-keyword-face ((t (:foreground "#e6b800"))))
- '(font-lock-string-face ((t (:foreground "#98c379"))))
- '(font-lock-type-face ((t (:foreground "#e6b800"))))
- '(font-lock-variable-name-face ((t (:foreground "#ffffff")))))
 
-)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:background "#1a1a1a" :foreground "#ffffff"))))
- '(font-lock-builtin-face ((t (:foreground "#e6b800"))))
+ '(default ((t (:background "#181825" :foreground "#cdd6f4"))))
+ '(font-lock-builtin-face ((t (:foreground "#f9e2af"))))
  '(font-lock-comment-face ((t (:foreground "#666666"))))
- '(font-lock-constant-face ((t (:foreground "#e6b800"))))
- '(font-lock-function-name-face ((t (:foreground "#e6b800"))))
- '(font-lock-keyword-face ((t (:foreground "#e6b800"))))
+ '(font-lock-constant-face ((t (:foreground "#f9e2af"))))
+ '(font-lock-function-name-face ((t (:foreground "#f9e2af"))))
+ '(font-lock-keyword-face ((t (:foreground "#f9e2af"))))
  '(font-lock-string-face ((t (:foreground "#98c379"))))
- '(font-lock-type-face ((t (:foreground "#e6b800"))))
- '(font-lock-variable-name-face ((t (:foreground "#ffffff")))))
+ '(font-lock-type-face ((t (:foreground "#f9e2af"))))
+ '(font-lock-variable-name-face ((t (:foreground "#cdd6f4")))))
+
+(defun smart-curly-braces ()
+  "Insert curly braces if previous character is '{'"
+  (interactive)
+  (if (eq (char-before) ?{)
+      (progn
+        (newline-and-indent)
+        (newline-and-indent)
+        (insert "}")
+        (forward-line -1)
+        (indent-according-to-mode))
+    (newline-and-indent)))
+
+(global-set-key (kbd "RET") #'smart-curly-braces)
