@@ -23,6 +23,9 @@
 (use-package go-mode
   :hook (go-mode . lsp-deferred))
 
+(use-package lua-mode
+  :hook (lua-mode . lsp-deferred))
+
 (use-package typescript-mode
   :hook (typescript-mode . lsp-deferred))
 
