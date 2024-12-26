@@ -183,10 +183,12 @@
 (define-key evil-normal-state-map (kbd "s-h") 'evil-window-left)
 (define-key evil-normal-state-map (kbd "s-j") 'evil-window-down)
 (define-key evil-normal-state-map (kbd "s-k") 'evil-window-up)
-(define-key evil-normal-state-map (kbd "s-l") 'evil-window-right))
+(define-key evil-normal-state-map (kbd "s-l") 'evil-window-right)
 
 
 ;; nop this bindings
+
+;; do not hide emacs on cmd+h
 (global-unset-key (kbd "s-h"))
 
 
@@ -249,7 +251,8 @@
  '(font-lock-builtin-face ((t (:foreground "#f9e2af"))))
  '(font-lock-comment-face ((t (:foreground "#666666"))))
  '(font-lock-constant-face ((t (:foreground "#f9e2af"))))
- '(font-lock-function-name-face ((t (:foreground "#f9e2af"))))
+ '(font-lock-function-name-face ((t (:foreground "#cdd6f4"))))
+ ;; '(font-lock-function-name-face ((t nil)))
  '(font-lock-keyword-face ((t (:foreground "#f9e2af"))))
  '(font-lock-string-face ((t (:foreground "#98c379"))))
  '(font-lock-type-face ((t (:foreground "#f9e2af"))))

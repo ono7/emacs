@@ -2,6 +2,7 @@
 *
 # But keep init.el
 !init.el
+!early-init.el
 !.gitignore
 
 
