@@ -29,19 +29,15 @@
 (setq auto-save-default nil)
 (setq initial-scratch-message nil)
 
+(when (string= system-type "darwin")       
+  (setq dired-use-ls-dired nil))
+
 ;; GUI specific settings
 (when (display-graphic-p)
   ;; Remove all decorations
   (tool-bar-mode -1)
   (scroll-bar-mode -1)
-  (menu-bar-mode -1)
-  (set-frame-parameter nil 'undecorated t)
-  (add-to-list 'default-frame-alist '(undecorated-round . t))
-  
-  ;; Set internal border to 15 pixels for a floating effect
-  (set-frame-parameter nil 'internal-border-width 15)
-  (add-to-list 'default-frame-alist '(internal-border-width . 15)))
-
+  (menu-bar-mode -1))
 
 ;; Theme setup
 (use-package doom-themes
@@ -75,7 +71,12 @@
   :config
   (evil-mode 1))
 
-;; comments 
+;; M-x dirvish RET this is not very friendly
+(use-package dirvish
+  :init
+  (dirvish-override-dired-mode))
+
+;; comments, use gc or cmd+/
 (use-package evil-commentary
   :ensure t
   :config
@@ -87,7 +88,6 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;; command completion ;;;;;;;;;;;;;;;;;;;;;;
 
-;; Install and configure Vertico
 (use-package vertico
   :ensure t
   :init
@@ -100,7 +100,6 @@
               ("s-l" . vertico-exit)
               ("s-h" . vertico-exit-delete)))
 
-;; Optional but recommended: Install Marginalia for rich annotations
 (use-package marginalia
   :ensure t
   :init
@@ -113,11 +112,6 @@
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles basic partial-completion)))))
 
-;; treesitter
-;(use-package treesit-auto
-;  :config
-;  (treesit-auto-add-to-auto-mode-alist 'all))
-
 ;; Company mode
 (use-package company
   :config
@@ -125,6 +119,7 @@
   (setq company-minimum-prefix-length 1)
   (global-company-mode))
 
+;; save recent files (evil s-r)
 (use-package recentf
   :config
   (recentf-mode 1)
@@ -135,7 +130,7 @@
 (use-package general
   :config
   (general-evil-setup)
-  
+
   ;; macOS-style key bindings
   (general-define-key
    ;"s-s" 'save-buffer
@@ -151,31 +146,49 @@
    ;"s-n" 'make-frame
    ;"s-}" 'next-buffer
    ;"s-{" 'previous-buffer
-   "s-t" 'vterm
-   "s-T" 'vterm-other-window
+   ;"s-t" 'vterm
+   ; "s-T" 'vterm-other-window
    "s-b" 'switch-to-buffer
    "s-p" 'project-find-file)
-
   ;; Window management
   (general-define-key
    "s-1" 'delete-other-windows
    "s-2" 'split-window-below
    "s-3" 'split-window-right
    "s-0" 'delete-window)
-   
   ;; Completion key bindings
   (general-define-key
    :keymaps 'company-mode-map
-   "s-i" 'company-complete
+   "s-i" 'company-complete  ;; autocomplete trigger
    "M-i" 'company-complete)
-
+   
   (general-define-key
    :keymaps 'company-active-map
    "C-n" 'company-select-next
    "C-p" 'company-select-previous
    "C-h" 'company-show-doc-buffer
    "<tab>" 'company-complete-selection
-   "RET" 'company-complete-selection))
+   "RET" 'company-complete-selection)
+  
+ ;; more vim like navigation on macos using cmd keys
+(define-key evil-normal-state-map (kbd "U") 'undo-redo)
+(define-key evil-normal-state-map (kbd "s-i") 'evil-jump-forward)
+(define-key evil-normal-state-map (kbd "s-o") 'evil-jump-backward))
+(define-key evil-insert-state-map (kbd "s-<backspace>") 'backward-kill-word)
+
+;; strickly for buffer navigation we need this
+;; (define-key evil-normal-state-map (kbd "s-h") 'previous-buffer)
+;; (define-key evil-normal-state-map (kbd "s-l") 'next-buffer)
+
+(define-key evil-normal-state-map (kbd "s-h") 'evil-window-left)
+(define-key evil-normal-state-map (kbd "s-j") 'evil-window-down)
+(define-key evil-normal-state-map (kbd "s-k") 'evil-window-up)
+(define-key evil-normal-state-map (kbd "s-l") 'evil-window-right))
+
+
+;; nop this bindings
+(global-unset-key (kbd "s-h"))
+
 
 ;; LSP mode
 (use-package lsp-mode
@@ -229,17 +242,9 @@
    ("s-g" . consult-ripgrep)))              ; CMD+g for grep search
 
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
  '(package-selected-packages nil))
 
 (custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
  '(default ((t (:background "#1b1f31" :foreground "#cdd6f4"))))
  '(font-lock-builtin-face ((t (:foreground "#f9e2af"))))
  '(font-lock-comment-face ((t (:foreground "#666666"))))
@@ -264,3 +269,20 @@
 
 (global-set-key (kbd "RET") #'smart-curly-braces)
 
+;; toggle the vterm like vscode
+(defun my/toggle-vterm ()
+  "Toggle vterm buffer at the bottom"
+  (interactive)
+  (if (get-buffer "*vterm*")
+      (if (string= (buffer-name) "*vterm*")
+          (delete-window)
+        (if (get-buffer-window "*vterm*")
+            (delete-window (get-buffer-window "*vterm*"))
+          (split-window-below)
+          (other-window 1)
+          (switch-to-buffer "*vterm*")))
+    (split-window-below)
+    (other-window 1)
+    (vterm)))
+
+(global-set-key (kbd "s-t") 'my/toggle-vterm)
