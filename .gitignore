@@ -1,9 +1,11 @@
-# Ignore everything in .emacs.d
+# First ignore everything
 *
-# But keep init.el
+
+# Then explicitly allow these files
 !init.el
 !early-init.el
 !.gitignore
+
+# Allow lisp directory and its contents
 !lisp/
-
-
+!lisp/*.el
