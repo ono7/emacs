@@ -240,7 +240,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:background "#181825" :foreground "#cdd6f4"))))
+ '(default ((t (:background "#1b1f31" :foreground "#cdd6f4"))))
  '(font-lock-builtin-face ((t (:foreground "#f9e2af"))))
  '(font-lock-comment-face ((t (:foreground "#666666"))))
  '(font-lock-constant-face ((t (:foreground "#f9e2af"))))
@@ -263,3 +263,4 @@
     (newline-and-indent)))
 
 (global-set-key (kbd "RET") #'smart-curly-braces)
+
