@@ -9,6 +9,7 @@
 (load "init-core")
 (load "init-package")
 (load "init-evil")
+(load "init-treesitter")
 (load "init-ui")
 (load "init-completion")
 (load "init-keybinds")
