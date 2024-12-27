@@ -50,6 +50,7 @@
 (global-set-key (kbd "s-t") 'my/toggle-vterm)
 
 
+;; TODO: is this doing anything?
 (use-package savehist
   :defer 2
   :init
@@ -85,3 +86,29 @@
             compilation-mode))
   (setopt popper-display-control t)
   (popper-mode +1))
+
+(use-package fzf
+  ;; :bind
+  ;; Add these to your .emacs or init.el file
+  ;; :bind (("M-f" 'fzf-find-files)
+  ;;        ("M-g" 'fzf-git-files)
+  ;;        ("M-w" 'fzf-projectile))
+  :init (setenv "FZF_DEFAULT_COMMAND" "fd --type f")
+  :config
+
+(define-key global-map (kbd "C-c f") #'fzf)
+(define-key global-map (kbd "C-c d") #'fzf-directory)
+(define-key global-map (kbd "C-c g") #'fzf-git-files)
+(define-key global-map (kbd "C-c s") #'fzf-projectile)
+(define-key global-map (kbd "C-c b") #'fzf-switch-buffer)
+  (setq fzf/args "-x --color bw --print-query --margin=1,0 --no-hscroll"
+        ;; fzf/executable "fzf"
+	fzf/executable "/Users/jlima/.fzf/bin/fzf"
+        fzf/git-grep-args "-i --line-number %s"
+        ;; command used for `fzf-grep-*` functions
+        ;; example usage for ripgrep:
+        fzf/grep-command "rg --no-heading -nH"
+        ;; fzf/grep-command "grep -nrH"
+        ;; If nil, the fzf buffer will appear at the top of the window
+        fzf/position-bottom t
+        fzf/window-height 15))

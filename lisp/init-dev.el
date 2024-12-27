@@ -1,4 +1,5 @@
 ;; lisp/init-dev.el
+;; TODO revisit these modes, check out the treesitter versions of ti
 (use-package lsp-mode
   :commands lsp
   :custom
@@ -9,9 +10,9 @@
   :config
   (general-define-key
    :states '(normal insert)
-   "s-k" 'lsp-signature-help
-   "s-h" 'lsp-describe-thing-at-point
-   "s-d" 'lsp-find-definition))
+   "M-k" 'lsp-signature-help
+   "M-h" 'lsp-describe-thing-at-point
+   "M-d" 'lsp-find-definition))
 
 (use-package web-mode
   :mode ("\\.html\\'" "\\.tsx\\'" "\\.jsx\\'")
@@ -42,10 +43,10 @@
 (add-hook 'compilation-start-hook 'finish-focus-comp)
 
 (defun finish-focus-comp (&optional buf-or-proc arg2)
-    (let* ((comp-buf (if (processp buf-or-proc)
-                         (process-buffer buf-or-proc)
-                       buf-or-proc))
-           (window (get-buffer-window comp-buf)))
-      (if window
-          (select-window window)
-        (switch-to-buffer-other-window comp-buf))))
+  (let* ((comp-buf (if (processp buf-or-proc)
+                       (process-buffer buf-or-proc)
+                     buf-or-proc))
+         (window (get-buffer-window comp-buf)))
+    (if window
+        (select-window window)
+      (switch-to-buffer-other-window comp-buf))))
