@@ -35,3 +35,17 @@
 
 (use-package yaml-mode
   :mode "\\.ya?ml\\'")
+
+
+;; Auto focus compilation buffer
+(add-hook 'compilation-finish-functions 'finish-focus-comp)
+(add-hook 'compilation-start-hook 'finish-focus-comp)
+
+(defun finish-focus-comp (&optional buf-or-proc arg2)
+    (let* ((comp-buf (if (processp buf-or-proc)
+                         (process-buffer buf-or-proc)
+                       buf-or-proc))
+           (window (get-buffer-window comp-buf)))
+      (if window
+          (select-window window)
+        (switch-to-buffer-other-window comp-buf))))

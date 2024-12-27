@@ -48,3 +48,40 @@
     (vterm)))
 
 (global-set-key (kbd "s-t") 'my/toggle-vterm)
+
+
+(use-package savehist
+  :defer 2
+  :init
+  (savehist-mode t)
+  ;; So I can always jump back to wear I left of yesterday
+  (add-to-list 'savehist-additional-variables 'global-mark-ring))
+
+
+;;; popup window managment
+(use-package popper
+  :ensure t ; or :straight t
+  :bind (("M-`"     . popper-toggle)
+         ("M-~"     . popper-cycle)
+         ("C-x M-`" . popper-toggle-type))
+  :init
+  (setopt popper-reference-buffers
+          '("\\*Messages\\*"
+            "\\*Warnings\\*"
+            "\\*xref\\*"
+            "\\*Backtrace\\*"
+            "*Flymake diagnostics.*"
+            "\\*eldoc\\*"
+            "\\*compilation\\*"
+            "\\*rustic-"
+            "^*tex"
+            "\\*Ement Notifications\\*"
+            "Output\\*$"
+            "\\*Async Shell Command\\*"
+            "\\*Dtache Shell Command\\*"
+            "\\*mu4e-update\\*"
+            "\\*GDB.*out\\*"
+            help-mode
+            compilation-mode))
+  (setopt popper-display-control t)
+  (popper-mode +1))

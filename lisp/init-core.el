@@ -22,3 +22,14 @@
 
 ;; this is very aggressive, testing kill-buffer-query-functions first
 ;; (setq confirm-kill-processes nil) ;; Don't prompt for running processes
+
+;; no delay when deleting pairs
+(setopt delete-pair-blink-delay 0)
+
+
+(prefer-coding-system 'utf-8)
+
+(setq-default select-enable-primary t)
+
+;; avoid leaving a gap between the frame and the screen
+(setq-default frame-resize-pixelwise t)

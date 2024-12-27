@@ -3,6 +3,10 @@
 ;; TODO: magit
 ;; TODO: LSP completion and general maintenance
 
+
+;; useful for quickly debugging Emacs
+;; (setq debug-on-error t)
+
 (defun load-directory (dir)
   "Load all Emacs Lisp files in DIR."
   (let ((load-it (lambda (f)
@@ -20,6 +24,7 @@
 (load "init-utils")
 (load "init-formatting")
 (load "init-theme")
+(load "init-magit")
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -28,3 +33,17 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    '(format-all lua-mode yaml-mode web-mode vterm vertico typescript-mode treesit-auto orderless marginalia lsp-mode go-mode general evil-commentary doom-themes dirvish consult company)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:background "#1b1f31" :foreground "#cdd6f4"))))
+ '(font-lock-builtin-face ((t (:foreground "#f9e2af"))))
+ '(font-lock-comment-face ((t (:foreground "#666666"))))
+ '(font-lock-constant-face ((t (:foreground "#f9e2af"))))
+ '(font-lock-function-name-face ((t (:foreground "#cdd6f4"))))
+ '(font-lock-keyword-face ((t (:foreground "#f9e2af"))))
+ '(font-lock-string-face ((t (:foreground "#98c379"))))
+ '(font-lock-type-face ((t (:foreground "#f9e2af"))))
+ '(font-lock-variable-name-face ((t (:foreground "#cdd6f4")))))
