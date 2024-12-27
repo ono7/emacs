@@ -6,5 +6,19 @@
       auto-save-default nil
       initial-scratch-message nil)
 
-(when (string= system-type "darwin")       
+(when (string= system-type "darwin")
   (setq dired-use-ls-dired nil))
+
+;; disable message after startup on the command area
+(defun display-startup-echo-area-message ()
+  (message ""))
+
+(setq auto-save-default nil)  ; disable auto-save files (#foo#)
+(setq make-backup-files nil)  ; disable backup files (foo~)
+
+;; Disable all process-related prompts
+(setq confirm-kill-processes nil)
+(setq kill-buffer-query-functions nil)
+
+;; this is very aggressive, testing kill-buffer-query-functions first
+;; (setq confirm-kill-processes nil) ;; Don't prompt for running processes

@@ -1,0 +1,10 @@
+(custom-set-faces
+ '(default ((t (:background "#1b1f31" :foreground "#cdd6f4"))))
+ '(font-lock-builtin-face ((t (:foreground "#f9e2af"))))
+ '(font-lock-comment-face ((t (:foreground "#666666"))))
+ '(font-lock-constant-face ((t (:foreground "#f9e2af"))))
+ '(font-lock-function-name-face ((t (:foreground "#cdd6f4"))))
+ '(font-lock-keyword-face ((t (:foreground "#f9e2af"))))
+ '(font-lock-string-face ((t (:foreground "#98c379"))))
+ '(font-lock-type-face ((t (:foreground "#f9e2af"))))
+ '(font-lock-variable-name-face ((t (:foreground "#cdd6f4")))))
