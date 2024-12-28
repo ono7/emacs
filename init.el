@@ -1,4 +1,5 @@
 ;; TODO: magit <next>
+;; TODO: figure out bookmarks to use with switch-to-buffer
 ;; TODO: treesitter modes
 ;; TODO: Snippets
 ;; TODO: LSP completion and general maintenance 
