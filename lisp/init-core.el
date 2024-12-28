@@ -19,6 +19,8 @@
 ;; Disable all process-related prompts
 (setq confirm-kill-processes nil)
 (setq kill-buffer-query-functions nil)
+(setq confirm-kill-emacs nil)
+(setq kill-emacs-query-functions nil)
 
 ;; this is very aggressive, testing kill-buffer-query-functions first
 ;; (setq confirm-kill-processes nil) ;; Don't prompt for running processes

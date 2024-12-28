@@ -35,15 +35,6 @@
   :config
   (general-evil-setup)
 
-  ;; macOS specific bindings
-  ;; (when (eq system-type 'darwin)
-  ;;   (setq mac-command-modifier 'control)
-  ;;   (setq mac-option-modifier 'super)
-  ;;   (setq mac-right-option-modifier 'meta)
-  ;;   (setq mac-control-modifier 'super)
-  ;;   (setq ns-use-native-fullscreen t))
-
-
   (when (eq system-type 'darwin)
     (setq mac-command-modifier 'super)
     (setq mac-option-modifier 'meta)
@@ -52,6 +43,10 @@
   (general-define-key
    "M-b" 'switch-to-buffer
    "M-p" 'project-find-file)
+
+  ;; Unbind super-p globally
+  (global-unset-key (kbd "s-p"))
+  (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
   ;; (general-define-key
   ;;  "M-1" 'delete-other-windows
@@ -106,5 +101,8 @@
     (define-key shell-mode-map (kbd "s-j") 'evil-window-down)
     (define-key shell-mode-map (kbd "s-k") 'evil-window-up)
     (define-key shell-mode-map (kbd "s-l") 'evil-window-right))
+  ;; delete buffer globably
+  ;; (evil-define-key 'normal 'global (kbd "SPC d") 'kill-buffer)
+  (evil-define-key 'normal 'global (kbd "SPC d") 'kill-current-buffer)
 
   )

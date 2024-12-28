@@ -25,6 +25,7 @@
 (load "init-formatting")
 (load "init-theme")
 (load "init-magit")
+(load "init-workspaces")
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

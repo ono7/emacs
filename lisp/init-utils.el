@@ -96,11 +96,16 @@
   :init (setenv "FZF_DEFAULT_COMMAND" "fd --type f")
   :config
 
-(define-key global-map (kbd "C-c f") #'fzf)
-(define-key global-map (kbd "C-c d") #'fzf-directory)
-(define-key global-map (kbd "C-c g") #'fzf-git-files)
-(define-key global-map (kbd "C-c s") #'fzf-projectile)
-(define-key global-map (kbd "C-c b") #'fzf-switch-buffer)
+  ;; (define-key global-map (kbd "C-c f") #'fzf)
+  ;; (define-key global-map (kbd "C-c d") #'fzf-directory)
+  ;; (define-key global-map (kbd "C-c g") #'fzf-git-files)
+  ;; (define-key global-map (kbd "C-c s") #'fzf-projectile)
+  ;; (define-key global-map (kbd "C-c b") #'fzf-switch-buffer)
+  (define-key global-map (kbd "M-f") #'fzf)
+  (define-key global-map (kbd "M-d") #'fzf-directory)
+  (define-key global-map (kbd "M-g") #'fzf-git-files)
+  ;; (define-key global-map (kbd "C-c s") #'fzf-projectile)
+  (define-key global-map (kbd "C-c b") #'fzf-switch-buffer)
   (setq fzf/args "-x --color bw --print-query --margin=1,0 --no-hscroll"
         ;; fzf/executable "fzf"
 	fzf/executable "/Users/jlima/.fzf/bin/fzf"
