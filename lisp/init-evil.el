@@ -41,8 +41,11 @@
     (setq ns-use-native-fullscreen t))
 
   (general-define-key
-   "M-b" 'switch-to-buffer
-   "M-p" 'project-find-file)
+   "s-b" 'switch-to-buffer
+   "s-P" 'project-switch-project
+   "s-p" 'project-find-file)
+  ;; automatically open project-find-file after switching projects
+  (setq project-switch-commands 'project-find-file)
 
   ;; Unbind super-p globally
   (global-unset-key (kbd "s-p"))

@@ -1,8 +1,7 @@
+;; TODO: magit <next>
+;; TODO: treesitter modes
 ;; TODO: Snippets
-;; TODO: formatting - needs hook for format on save, works manually
-;; TODO: magit
-;; TODO: LSP completion and general maintenance
-
+;; TODO: LSP completion and general maintenance 
 
 ;; useful for quickly debugging Emacs
 ;; (setq debug-on-error t)
