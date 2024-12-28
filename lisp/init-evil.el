@@ -41,7 +41,7 @@
     (setq ns-use-native-fullscreen t))
 
   (general-define-key
-   "s-b" 'switch-to-buffer
+   ;; "s-b" 'switch-to-buffer
    "s-P" 'project-switch-project
    "s-p" 'project-find-file)
   ;; automatically open project-find-file after switching projects

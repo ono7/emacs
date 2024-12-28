@@ -6,6 +6,14 @@
 
 (package-initialize)
 
+;; when running without deamon
+;(when (memq window-system '(mac ns x))
+;  (exec-path-from-shell-initialize))
+
+;; when running as daemon
+(when (daemonp)
+  (exec-path-from-shell-initialize))
+
 (unless package-archive-contents
   (package-refresh-contents))
 
