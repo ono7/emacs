@@ -14,35 +14,35 @@
 
 ;; Custom mode line format
 (setq-default mode-line-format
-      (list
-       ;; Buffer status (read-only, modified)
-       '(:eval (cond (buffer-read-only " ⚯")
-                    ((buffer-modified-p) " ●")
-                    (t " ")))
-       
-       ;; Buffer name
-       " %b "
-       
-       ;; Major mode
-       '(:eval (propertize " %m " 'face '(:inherit mode-line :foreground "#87afaf")))
-       
-       ;; Line and column numbers
-       " %l:%c "
-       
-       ;; Right-aligned items
-       '(:eval 
-         (propertize
-          (format-mode-line
-           (list
-            ;; Git branch (if vc-mode is loaded)
-            '(:eval (when vc-mode
-                     (format " %s " (substring vc-mode 5))))
-            ;; Encoding
-            '(:eval (let ((sys (coding-system-plist buffer-file-coding-system)))
-                     (if (memq (plist-get sys :category)
-                             '(coding-category-undecided coding-category-utf-8))
-                         " UTF-8 "
-                       (upcase (symbol-name (plist-get sys :name))))))))))))
+	      (list
+	       ;; Buffer status (read-only, modified)
+	       '(:eval (cond (buffer-read-only " ⚯")
+			     ((buffer-modified-p) " ●")
+			     (t " ")))
+
+	       ;; Buffer name
+	       " %b "
+
+	       ;; Major mode
+	       '(:eval (propertize " %m " 'face '(:inherit mode-line :foreground "#87afaf")))
+
+	       ;; Line and column numbers
+	       " %l:%c "
+
+	       ;; Right-aligned items
+	       '(:eval
+		 (propertize
+		  (format-mode-line
+		   (list
+		    ;; Git branch (if vc-mode is loaded)
+		    '(:eval (when vc-mode
+			      (format " %s " (substring vc-mode 5))))
+		    ;; Encoding
+		    '(:eval (let ((sys (coding-system-plist buffer-file-coding-system)))
+			      (if (memq (plist-get sys :category)
+					'(coding-category-undecided coding-category-utf-8))
+				  " UTF-8 "
+				(upcase (symbol-name (plist-get sys :name))))))))))))
 
 ;; Optional: Add padding to the mode line
 (setq-default mode-line-format

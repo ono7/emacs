@@ -1,4 +1,16 @@
 ;; lisp/init-core.el
+
+;; use RET to accept yes or no prompt, also rename yes to y and no to n
+(fset 'yes-or-no-p 'y-or-n-p) 
+(defun y-or-n-p-with-return (orig-func &rest args)
+  (let ((query-replace-map (copy-keymap query-replace-map)))
+    (define-key query-replace-map (kbd "RET") 'act)
+    (apply orig-func args)))        
+
+(advice-add 'y-or-n-p :around #'y-or-n-p-with-return)
+
+
+
 (setq inhibit-startup-message t
       visible-bell nil
       ring-bell-function 'ignore

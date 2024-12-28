@@ -6,19 +6,6 @@
   :init
   (dirvish-override-dired-mode))
 
-(use-package recentf
-  :config
-  (recentf-mode 1)
-  (setq recentf-max-saved-items 50)
-  (setq recentf-max-menu-items 15))
-
-(use-package consult
-  :bind
-  (("M-b" . consult-buffer)
-   ("M-r" . consult-recent-file)
-   ("M-f" . consult-fd)
-   ("M-g" . consult-ripgrep)))
-
 (defun smart-curly-braces ()
   "Insert curly braces if previous character is '{'"
   (interactive)
