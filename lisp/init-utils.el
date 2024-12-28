@@ -16,6 +16,7 @@
   :bind
   (("M-b" . consult-buffer)
    ("M-r" . consult-recent-file)
+   ("M-f" . consult-fd)
    ("M-g" . consult-ripgrep)))
 
 (defun smart-curly-braces ()

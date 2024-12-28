@@ -88,8 +88,9 @@
   (define-key evil-normal-state-map (kbd "s-k") 'evil-window-up)
   (define-key evil-normal-state-map (kbd "s-l") 'evil-window-right)
 
-  ;; Quick buffer switching
-  (define-key evil-normal-state-map (kbd "s-b") 'switch-to-buffer)
+  ;; Quick buffer switching/file finder
+  ;; (define-key evil-normal-state-map (kbd "s-b") 'switch-to-buffer)
+  ;; (define-key evil-normal-state-map (kbd "s-f") 'find-file)
 
   ;; If you're using vterm
   (with-eval-after-load 'vterm

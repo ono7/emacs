@@ -1,8 +1,11 @@
 ;; TODO: magit <next>
 ;; TODO: figure out bookmarks to use with switch-to-buffer
+;; TODO: consult-line? find lines in file or use i-search or just / ? in evil
+;; TODO: embark?? 
 ;; TODO: treesitter modes
 ;; TODO: Snippets
 ;; TODO: LSP completion and general maintenance 
+
 
 ;; useful for quickly debugging Emacs
 ;; (setq debug-on-error t)
@@ -24,11 +27,10 @@
 ;; (load "init-modeline")
 (load "init-core")
 (load "init-package")
-
+(load "init-completion")
 (load "init-evil") ;; keymaps
 (load "init-treesitter")
 (load "init-ui")
-(load "init-completion")
 (load "init-dev")
 (load "init-utils")
 (load "init-formatting")

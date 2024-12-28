@@ -57,5 +57,6 @@
 ;; Key bindings
 (evil-define-key 'normal 'global (kbd "SPC w a") 'my-add-workspace)
 (evil-define-key 'normal 'global (kbd "SPC w r") 'my-remove-workspace)
-(evil-define-key 'normal 'global (kbd "SPC w s") 'my-switch-workspace)
+;; (evil-define-key 'normal 'global (kbd "SPC w s") 'my-switch-workspace)
+(evil-define-key 'normal 'global (kbd "M-w") 'my-switch-workspace)
 (evil-define-key 'normal 'global (kbd "SPC w .") 'my-add-current-workspace)
