@@ -1,4 +1,4 @@
-;; lisp/init-completion.el
+;; lisp/init-mini-buffer-completion.el
 (use-package vertico
   :ensure t
   :init

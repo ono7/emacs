@@ -27,7 +27,7 @@
 ;; (load "init-modeline")
 (load "init-core")
 (load "init-package")
-(load "init-completion")
+(load "init-mini-buffer-completion")
 (load "init-evil") ;; keymaps
 (load "init-treesitter")
 (load "init-ui")
