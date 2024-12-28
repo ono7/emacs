@@ -7,12 +7,15 @@
   (lsp-headerline-breadcrumb-enable nil)
   (lsp-diagnostics-provider :none)
   (lsp-enable-snippet nil)
+  (lsp-enable-symbol-highlighting nil)
+  (lsp-idle-delay 0.5)
   :config
   (general-define-key
    :states '(normal insert)
    "M-k" 'lsp-signature-help
    "M-h" 'lsp-describe-thing-at-point
    "M-d" 'lsp-find-definition))
+
 
 (use-package web-mode
   :mode ("\\.html\\'" "\\.tsx\\'" "\\.jsx\\'")
@@ -30,11 +33,11 @@
   :ensure t
   :mode "\\.go\\'"
   :preface
-   (defun vd/go-lsp-start()
+  (defun vd/go-lsp-start()
     (define-key go-ts-mode-map
-            ["RET"] 'newline-and-indent)
+		["RET"] 'newline-and-indent)
     (define-key go-ts-mode-map
-            ["M-RET"] 'newline)
+		["M-RET"] 'newline)
     (add-hook 'before-save-hook #'lsp-format-buffer t t)
     (add-hook 'before-save-hook #'lsp-organize-imports t t)
     (lsp-deferred)
@@ -50,24 +53,24 @@
                           (shadow . t)
                           (unusedwrite . t)
                           (fieldalignment . t)
-                                       )
+                          )
         lsp-go-codelenses '(
-                          (test . t)
-                          (tidy . t)
-                          (upgrade_dependency . t)
-                          (vendor . t)
-                          (run_govulncheck . t)
-                                       )
+                            (test . t)
+                            (tidy . t)
+                            (upgrade_dependency . t)
+                            (vendor . t)
+                            (run_govulncheck . t)
+                            )
         )
-)
+  )
 
 (use-package go-tag
   :ensure t
-)
+  )
 
 (use-package godoctor
   :ensure t
-)
+  )
 
 ;;;; GO END ;;;;;
 

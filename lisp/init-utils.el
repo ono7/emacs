@@ -87,6 +87,10 @@
   (setopt popper-display-control t)
   (popper-mode +1))
 
+(use-package all-the-icons
+  :ensure t
+  :if (display-graphic-p))
+
 (use-package treemacs
   :ensure t
   :custom
@@ -97,6 +101,14 @@
   (general-define-key
    :states 'normal
    "SPC b" 'treemacs))
+
+;; better modeline...
+;; (use-package doom-modeline
+;;   :ensure t
+;;   :init (doom-modeline-mode 1)
+;;   :config
+;;   (setq doom-modeline-icon nil)
+;;   )
 
 ;; (use-package fzf
 ;;   ;; :bind

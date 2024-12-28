@@ -10,7 +10,8 @@
 ;(when (memq window-system '(mac ns x))
 ;  (exec-path-from-shell-initialize))
 
-;; when running as daemon
+;; when running as daemon this fixes byte compilation errors
+;; imports path from shell so tha emacs gui behaves
 (when (daemonp)
   (exec-path-from-shell-initialize))
 

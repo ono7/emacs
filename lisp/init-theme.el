@@ -7,4 +7,5 @@
  '(font-lock-keyword-face ((t (:foreground "#f9e2af"))))
  '(font-lock-string-face ((t (:foreground "#98c379"))))
  '(font-lock-type-face ((t (:foreground "#f9e2af"))))
- '(font-lock-variable-name-face ((t (:foreground "#cdd6f4")))))
+ '(font-lock-variable-name-face ((t (:foreground "#cdd6f4"))))
+ '(region ((t (:background "#243d61")))))

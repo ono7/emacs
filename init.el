@@ -13,6 +13,14 @@
     (mapc load-it (directory-files dir nil "\\.el$"))))
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
+
+;; Don’t compact font caches during GC.
+(setq inhibit-compacting-font-caches t)
+
+;; show path not symlink
+(setq find-file-visit-truename t)
+
+;; (load "init-modeline")
 (load "init-core")
 (load "init-package")
 
